@@ -1,0 +1,35 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+  .h-font {
+  font-family: "Merienda", cursive;
+  font-optical-sizing:auto;
+  font-weight: 400,700;
+  font-style: normal;
+}
+*{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400,500,600;
+  font-style: normal;
+}
+.custom-bg{
+  background-color: #2ec1ac;
+}
+.custom-bg:hover{
+  background-color: #279e8c;
+}
+.availability-form{
+  margin-top: -50px;
+  z-index: 2;
+  position:relative;
+}
+@media screen and (max-width: 575px){
+  .availability-form{
+    margin-top: 25px;
+    z-index: 2;
+    position:relative;
+    padding: 0, 25;
+  }
+}
