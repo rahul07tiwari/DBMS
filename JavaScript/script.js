@@ -63,25 +63,11 @@
     }
   });
 
-  // inclusion
-
-document.addEventListener("DOMContentLoaded",
-
-function() {
-  fetch("Links.html")
-      .then(response => response.text())
-      .then(data => {
-          document.getElementById("Links").innerHTML = data;
-      });
-  fetch("header.html")
-      .then(response => response.text())
-      .then(data => {
-          document.getElementById("header").innerHTML = data;
-      });
-
-  fetch("footer.html")
-      .then(response => response.text())
-      .then(data => {
-          document.getElementById("footer").innerHTML = data;
-      });
-});
+  //-------------------------------load header and footer in main html page-------------------------------------------------------//
+  $(function () {
+    var header = $.Deferred();
+    var footer = $.Deferred();
+    $('#header').load(baseURL + "/HTML/header.html", function () { header.resolve(); }); // load header
+    $('#footer').load(baseURL + "/HTML/footer.html", function () { footer.resolve(); }); // load footer
+  });
+  
