@@ -3,6 +3,10 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+:root{
+  --teal: #2ec1ac;
+  --teal_hover: #279e8c;
+}
   .h-font {
   font-family: "Merienda", cursive;
   font-optical-sizing:auto;
@@ -15,10 +19,10 @@ input::-webkit-inner-spin-button {
   font-style: normal;
 }
 .custom-bg{
-  background-color: #2ec1ac;
+  background-color: var(--teal) !important;
 }
 .custom-bg:hover{
-  background-color: #279e8c;
+  background-color: var(--teal_hover) !important;
 }
 .availability-form{
   margin-top: -50px;
@@ -32,4 +36,15 @@ input::-webkit-inner-spin-button {
     position:relative;
     padding: 0, 25;
   }
+}
+
+.h-line{
+  width: 150px;
+  margin: 0 auto;
+  height: 1.7px;
+}
+.pop:hover{
+  border-top-color: var(--teal) !important;
+  transform: scale(1.03);
+  transition: all 0.3s;
 }
