@@ -71,7 +71,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   
   //--------------------------------------Load header.html------------------------------------------------------//
-  fetch("./Common/header.html")
+  fetch("./common/header.html")
       .then(response => response.text())
       .then(data => {
           document.getElementById("header").innerHTML = data;
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
 
   //-------------------------------------Load footer.html-------------------------------------------------------//
-  fetch("./Common/footer.html")
+  fetch("./common/footer.html")
       .then(response => response.text())
       .then(data => {
           document.getElementById("footer").innerHTML = data;
