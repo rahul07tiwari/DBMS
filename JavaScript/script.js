@@ -67,24 +67,8 @@
     }
   });
 //----------------------------------------header and footer loading---------------------------------------------//
-
-document.addEventListener("DOMContentLoaded", function() {
-  
-  //--------------------------------------Load header.html------------------------------------------------------//
-  fetch("./common/header.html")
-      .then(response => response.text())
-      .then(data => {
-          document.getElementById("header").innerHTML = data;
-          
-      });
-
-  //-------------------------------------Load footer.html-------------------------------------------------------//
-  fetch("./common/footer.html")
-      .then(response => response.text())
-      .then(data => {
-          document.getElementById("footer").innerHTML = data;
-      });
-});
+$('#header').load(baseURL + "/common/header.html", function () { header.resolve(); }); // load header
+$('#footer').load(baseURL + "/common/footer.html", function () { footer.resolve(); }); // load footer
 
  
   
