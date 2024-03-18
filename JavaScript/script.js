@@ -67,8 +67,10 @@
     }
   });
 //----------------------------------------header and footer loading---------------------------------------------//
-$('#header').load(baseURL + "/common/header.html", function () { header.resolve(); }); // load header
-$('#footer').load(baseURL + "/common/footer.html", function () { footer.resolve(); }); // load footer
 
+$(function () {
+$('#header').load("/common/header.html"); // load header
+$('#footer').load("/common/footer.html"); // load footer
+});
  
   
