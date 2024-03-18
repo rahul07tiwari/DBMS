@@ -1,4 +1,7 @@
-  // crousel........swiper
+
+ 
+
+//----------------------------------------crousel........swiper-------------------------------------------------//
   var swiper = new Swiper(".swiper-container", {
     spaceBetween: 30,
     effect: "fade",
@@ -8,7 +11,7 @@
         disableOnInteraction: false,
       },
   });
-//testimonials......... swiper
+//-----------------------------------------testimonials......... swiper-----------------------------------------//
   var swiper = new Swiper(".swiper-testimonials", {
     effect: "coverflow",
     grabCursor: true,
@@ -41,6 +44,7 @@
       },
     }
   });
+//-------------------------------------------facilities......... swiper-------------------------------------//
   var swiper = new Swiper(".mySwiper", {
     spaceBetween: 40,
     pagination: {
@@ -62,12 +66,24 @@
       },
     }
   });
+//----------------------------------------header and footer loading---------------------------------------------//
 
-  //-------------------------------load header and footer in main html page-------------------------------------------------------//
-  $(function () {
-    var header = $.Deferred();
-    var footer = $.Deferred();
-    $('#header').load(baseURL + "/HTML/header.html", function () { header.resolve(); }); // load header
-    $('#footer').load(baseURL + "/HTML/footer.html", function () { footer.resolve(); }); // load footer
-  });
+document.addEventListener("DOMContentLoaded", function() {
+  
+  //--------------------------------------Load header.html------------------------------------------------------//
+  fetch("./HTML/header.html")
+      .then(response => response.text())
+      .then(data => {
+          document.getElementById("header").innerHTML = data;
+      });
+
+  //-------------------------------------Load footer.html-------------------------------------------------------//
+  fetch("./HTML/footer.html")
+      .then(response => response.text())
+      .then(data => {
+          document.getElementById("footer").innerHTML = data;
+      });
+});
+
+ 
   
