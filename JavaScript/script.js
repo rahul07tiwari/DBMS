@@ -68,11 +68,9 @@
   });
 //----------------------------------------header and footer loading---------------------------------------------//
 
-var baseURL = getBaseURL('/DBMS');
-
 $(function () {
-$('#header').load(baseURL + "/common/header.html"); // load header
-$('#footer').load(baseURL +"/common/footer.html"); // load footer
+$('#header').load("/common/header.html"); // load header
+$('#footer').load("/common/footer.html"); // load footer
 });
  
   
