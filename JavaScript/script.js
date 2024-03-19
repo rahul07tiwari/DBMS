@@ -84,3 +84,11 @@ function getBaseURL(DBMS) {
     return window.location.origin;
   }
 }
+
+$('a[href^="/"], img[src^="/"]').each(function () {
+  let filepath = $(this).attr('href');
+  let imgpath = $(this).attr('src');
+  // Update the href attribute with the relative path
+  if (filepath) $(this).attr('href', baseURL + filepath);
+  if (imgpath) $(this).attr('src', baseURL + imgpath)
+});
