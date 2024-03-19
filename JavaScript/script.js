@@ -76,13 +76,6 @@ $(function () {
 $('#header').load(baseURL + "/common/header.html"); // load header
 $('#footer').load(baseURL + "/common/footer.html"); // load footer
 
-function getBaseURL(rootfoldername) {
-  if (window.location.pathname.includes(rootfoldername)) {
-    return window.location.origin + rootfoldername;
-  } else {
-    return window.location.origin;
-  }
-}
 $('a[href^="/"], img[src^="/"]').each(function () {
   let filepath = $(this).attr('href');
   let imgpath = $(this).attr('src');
@@ -92,3 +85,11 @@ $('a[href^="/"], img[src^="/"]').each(function () {
 });
 
 });
+
+function getBaseURL(rootfoldername) {
+  if (window.location.pathname.includes(rootfoldername)) {
+    return window.location.origin + rootfoldername;
+  } else {
+    return window.location.origin;
+  }
+}
