@@ -68,9 +68,17 @@
   });
 //----------------------------------------header and footer loading---------------------------------------------//
 
+var baseURL = getBaseURL('/DBMS'); 
+
 $(function () {
 $('#header').load("/common/header.html"); // load header
 $('#footer').load("/common/footer.html"); // load footer
 });
- 
-  
+
+function getBaseURL(rootFolderName) {
+  if (window.location.pathname.includes(rootFolderName)) {
+    return window.location.origin + rootFolderName;
+  } else {
+    return window.location.origin;
+  }
+}
