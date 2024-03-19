@@ -71,8 +71,10 @@
 var baseURL = getBaseURL('/DBMS'); 
 
 $(function () {
-$('#header').load("/common/header.html"); // load header
-$('#footer').load("/common/footer.html"); // load footer
+  var header = $.Deferred();
+  var footer = $.Deferred();
+$('#header').load(baseURL + "/common/header.html"); // load header
+$('#footer').load(baseURL + "/common/footer.html"); // load footer
 });
 
 function getBaseURL(DBMS) {
