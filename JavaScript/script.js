@@ -75,9 +75,9 @@ $('#header').load("/common/header.html"); // load header
 $('#footer').load("/common/footer.html"); // load footer
 });
 
-function getBaseURL(rootFolderName) {
-  if (window.location.pathname.includes(rootFolderName)) {
-    return window.location.origin + rootFolderName;
+function getBaseURL(DBMS) {
+  if (window.location.pathname.includes(DBMS)) {
+    return window.location.origin + DBMS;
   } else {
     return window.location.origin;
   }
