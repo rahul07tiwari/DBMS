@@ -76,6 +76,13 @@ $(function () {
 $('#header').load(baseURL + "/common/header.html"); // load header
 $('#footer').load(baseURL + "/common/footer.html"); // load footer
 });
+$('a[href^="/"], img[src^="/"]').each(function () {
+  let filepath = $(this).attr('href');
+  let imgpath = $(this).attr('src');
+  // Update the href attribute with the relative path
+  if (filepath) $(this).attr('href', baseURL + filepath);
+  if (imgpath) $(this).attr('src', baseURL + imgpath)
+});
 
 function getBaseURL(rootfoldername) {
   if (window.location.pathname.includes(rootfoldername)) {
