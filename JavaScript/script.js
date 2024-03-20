@@ -73,19 +73,19 @@ var baseURL = getBaseURL('/DBMS');
 $(function () {
   var header = $.Deferred();
   var footer = $.Deferred();
-$('#header').load(baseURL + "/common/header.html"); // load header
-$('#footer').load(baseURL + "/common/footer.html"); // load footer
+$('#header').load(baseURL + "/common/header.html", function(){ header.resolve() }); // load header
+$('#footer').load(baseURL + "/common/footer.html", function(){ footer.resolve() }); // load footer
 
-$('a[href^="/"], img[src^="/"]').each(function () {
-  let filepath = $(this).attr('href');
-  let imgpath = $(this).attr('src');
-  // Update the href attribute with the relative path
-  if (filepath) $(this).attr('href', baseURL + filepath);
-  if (imgpath) $(this).attr('src', baseURL + imgpath)
+  $.when(header, footer).done(function() {
+    $('a[href^="/"], img[src^="/"]').each(function () {
+      let filepath = $(this).attr('href');
+      let imgpath = $(this).attr('src');
+      // Update the href attribute with the relative path
+      if (filepath) $(this).attr('href', baseURL + filepath);
+      if (imgpath) $(this).attr('src', baseURL + imgpath)
+    });
+  })
 });
-
-});
-
 function getBaseURL(rootfoldername) {
   if (window.location.pathname.includes(rootfoldername)) {
     return window.location.origin + rootfoldername;
