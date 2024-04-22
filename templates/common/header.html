@@ -9,20 +9,20 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a id="home" class="nav-link" href="/index.html">Home</a>
+            <a id="home" class="nav-link" href="{{url_for('home')}}">Home</a>
           </li>
           <li class="nav-item">
-            <a id="Rooms" class="nav-link" href="/HTML/Rooms.html">Rooms</a>
+            <a id="Rooms" class="nav-link" href="{{url_for('Rooms')}}">Rooms</a>
           </li>
           <li class="nav-item">
-            <a id="Facilities" class="nav-link" href="/HTML/Facilities.html">Facilities</a>
+            <a id="Facilities" class="nav-link" href="{{url_for('Facilities')}}">Facilities</a>
           </li>
           <li class="nav-item">
-            <a id="Contact" class="nav-link" href="/HTML/Contact.html">Contact us</a>
+            <a id="Contact" class="nav-link" href="{{url_for('Contact')}}">Contact us</a>
           </li>
           </li>
           <li class="nav-item">
-            <a id="About" class="nav-link" href="/HTML/About.html">About</a>
+            <a id="About" class="nav-link" href="{{url_for('About')}}">About</a>
           </li>
         </ul>
         <form class="d-flex">
@@ -78,39 +78,39 @@
             <div class="row">
               <div class="col-md-6 ps-0 mb-3">
                 <label class="form-label">Name</label>
-              <input type="email" class="form-control shadow-none">
+              <input type="email" class="form-control shadow-none" name="Name">
               </div>
               <div class="col-md-6 p-0 mb-3">
                 <label class="form-label">Email address</label>
-              <input type="email" class="form-control shadow-none">
+              <input type="email" class="form-control shadow-none" name="Email">
               </div>
               <div class="col-md-6 ps-0 mb-3">
                 <label class="form-label">Phone Number</label>
-              <input type="number" class="form-control shadow-none">
+              <input type="number" class="form-control shadow-none" name="Phone">
               </div>
               <div class="col-md-6 p-0 mb-3">
                 <label class="form-label">Document</label>
-              <input type="file" class="form-control shadow-none">
+              <input type="file" class="form-control shadow-none" name="document">
               </div>
               <div class="col-md-12 p-0 mb-3">
                 <label class="form-label">Address</label>
-                <textarea class="form-control shadow-none" rows="1"></textarea>
+                <textarea class="form-control shadow-none" name="Address" rows="1"></textarea>
               </div>
               <div class="col-md-6 ps-0 mb-3">
                 <label class="form-label">Pincode</label>
-              <input type="number" class="form-control shadow-none">
+              <input type="number" class="form-control shadow-none" name="Pincode">
               </div>
               <div class="col-md-6 p-0 mb-3">
                 <label class="form-label">Date of birth</label>
-              <input type="date" class="form-control shadow-none">
+              <input type="date" class="form-control shadow-none" name="DOB">
               </div>
               <div class="col-md-6 ps-0 mb-3">
                 <label class="form-label">Password</label>
-              <input type="password" class="form-control shadow-none">
+              <input type="password" class="form-control shadow-none" name="password">
               </div>
               <div class="col-md-6 p-0 mb-3">
                 <label class="form-label">Confirm Password</label>
-              <input type="password" class="form-control shadow-none">
+              <input type="password" class="form-control shadow-none" name="confirm">
               </div>
               <div class="text-center p-0 my-4">
                 <button types="submit" class="btn btn-dark shadow-none">Register</button>

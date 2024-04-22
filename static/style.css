@@ -55,3 +55,22 @@ input::-webkit-inner-spin-button {
   transform: translate(-50%, -50%);
   width: 400px;
 }
+.custom-alert{
+  position:fixed !important; 
+  top: 80px !important;
+  right:25px !important;
+}
+#dashboard-menu{
+  position: fixed !important;
+  height: 100% !important;
+}
+@media screen and (max-width:992px){
+  #dashboard-menu{
+    position: fixed !important;
+    height: auto !important;
+    width: 100% !important
+  }
+  #main-content{
+    margin-top: 60px !important
+  }
+}

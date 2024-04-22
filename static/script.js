@@ -1,6 +1,3 @@
-
- 
-
 //----------------------------------------crousel........swiper-------------------------------------------------//
   var swiper = new Swiper(".swiper-container", {
     spaceBetween: 30,
@@ -73,8 +70,10 @@ var baseURL = getBaseURL('/DBMS');
 $(function () {
   var header = $.Deferred();
   var footer = $.Deferred();
-$('#header').load(baseURL + "/common/header.html", function(){ header.resolve() }); // load header
-$('#footer').load(baseURL + "/common/footer.html", function(){ footer.resolve() }); // load footer
+  var admin_header = $.Deferred();
+$('#header').load(baseURL + "/templates/header.html", function(){ header.resolve() }); // load header
+$('#footer').load(baseURL + "/templates/footer.html", function(){ footer.resolve() }); // load footer
+$('#admin_header').load(baseURL + "/templates/admin_header.html", function(){ admin_header.resolve() }); // load header
 
   $.when(header, footer).done(function() {
     $('a[href^="/"], img[src^="/"]').each(function () {
@@ -93,3 +92,4 @@ function getBaseURL(rootfoldername) {
     return window.location.origin;
   }
 }
+

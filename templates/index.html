@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel kaushtubha - HOME</title>
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -14,23 +14,23 @@
 <body class="bg-light"> 
   
   <!--header-->
-  <div id="header"></div>
+  {% include 'common/header.html' %}
   
   <!--carousel bars-->
       <div class="container-fluid">
           <div class="swiper-container"> 
          <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="./images/carousel/hotel.jpg" class="d-block w-100 h-100 object-fit-cover rounded">
+              <img src="{{ url_for('static',filename='/images/carousel/hotel.jpg')}}" class="d-block w-100 h-100 object-fit-cover rounded">
             </div>
             <div class="swiper-slide">
-              <img src="./images/carousel/hotel3.jpg" class="d-block w-100 h-100 object-fit-cover rounded ">
+              <img src="{{ url_for('static',filename='/images/carousel/hotel3.jpg')}}" class="d-block w-100 h-100 object-fit-cover rounded ">
             </div>
             <div class="swiper-slide">
-              <img src="./images/carousel/hotel4.jpg" class="d-block w-100 h-100 object-fit-cover rounded">
+              <img src="{{ url_for('static',filename='/images/carousel/hotel4.jpg')}}" class="d-block w-100 h-100 object-fit-cover rounded">
             </div>
             <div class="swiper-slide">
-              <img src="./images/carousel/IMG_93127.png" class="d-block w-100 h-100  rounded">
+              <img src="{{ url_for('static',filename='/images/carousel/IMG_93127.png')}}" class="d-block w-100 h-100  rounded">
             </div>
           </div>
           </div>
@@ -40,7 +40,7 @@
       <div class="row">
         <div class="col-lg-12 bg-white shadow p-4 rounded">
           <h5 class="mb-4">Check Booking Availability</h5>
-          <form>
+          <form method="post">
             <div class="row align-items-end">
               <div class="col-lg-3 mb-3">
                 <label class="form-label" style="font-weight:500;">Check-in</label>
@@ -50,23 +50,8 @@
                   <label class="form-label" style="font-weight:500;">Check-out</label>
                   <input type="date" class="form-control shadow-none">
                   </div>
-                  <div class="col-lg-3 mb-3">
-                    <label class="form-label" styles="font-weight:500;">Adult</label>
-                    <select class="form-select shadow-none">
-                      <option selected>Open this select menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                      <option value="4">Four</option>
-                      <option value="5">Five</option>
-                      <option value="6">Six</option>
-                      <option value="7">Seven</option>
-                      <option value="8">Eight</option>
-                      <option value="9">Nine</option>
-                    </select>
-                  </div>
                   <div class="col-lg-2 mb-3">
-                    <label class="form-label" styles="font-weight:500;">Children</label>
+                    <label class="form-label" styles="font-weight:500;">Guests</label>
                     <select class="form-select shadow-none">
                       <option selected>Open this select menu</option>
                       <option value="1">One</option>
@@ -95,9 +80,9 @@
   <div class="row">
     <div class="col-lg-4 col-md-6 my-6">
       <div class="card border-0 shadow" style="max-width:350px; margin:auto">
-        <img src="./images/rooms/IMG_42663.png" class="card-img-top" alt="room">
+        <img src="{{ url_for('static',filename='/images/rooms/IMG_11892.png')}}" class="card-img-top" alt="room">
         <div class="card-body">
-          <h5>Simple Room</h5>
+          <h5>{{ title }}</h5>
           <h6 class="mb-4"> ₹600 per night</h6>
           <div class="features mb-4"es>
             <h6 class="mb-1">Features</h6>
@@ -129,10 +114,7 @@
           <div class="guests mb-4">
             <h6 class="mb-1"> Guests</h6>
             <span class="badge rounded-pill bg-light text-dark text-wrap">
-              5 Adults 
-            </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap">
-              4 Children
+              5 People
             </span>
           </div>
           <div class="rating mb-4">
@@ -151,12 +133,13 @@
         </div>
       </div>
     </div>
+    
 
     <div class="col-lg-4 col-md-6 my-6">
       <div class="card border-0 shadow" style="max-width:350px; margin:auto">
-        <img src="./images/rooms/IMG_11892.png" class="card-img-top" alt="room">
+        <img src="{{ url_for('static',filename='/images/rooms/IMG_39782.png')}}" class="card-img-top" alt="room">
         <div class="card-body">
-          <h5>Deluxe Room</h5>
+          <h5>{{ title }}</h5>
           <h6 class="mb-4"> ₹1000 per night</h6>
           <div class="features mb-4"es>
             <h6 class="mb-1">Features</h6>
@@ -189,10 +172,7 @@
           <div class="guests mb-4">
             <h6 class="mb-1"> Guests</h6>
             <span class="badge rounded-pill bg-light text-dark text-wrap">
-              5 Adults 
-            </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap">
-              4 Children
+              7 People
             </span>
           </div>
           <div class="rating mb-4">
@@ -211,12 +191,13 @@
         </div>
       </div>
     </div>
-
+   
+    
     <div class="col-lg-4 col-md-6 my-6">
       <div class="card border-0 shadow" style="max-width:350px; margin:auto">
-        <img src="./images/rooms/IMG_39782.png" class="card-img-top" alt="room">
+        <img src="{{ url_for('static',filename='/images/rooms/IMG_42663.png')}}" class="card-img-top" alt="room">
         <div class="card-body">
-          <h5>Premium Room</h5>
+          <h5>{{ title }}</h5>
           <h6 class="mb-4"> ₹1500 per night</h6>
           <div class="features mb-4"es>
             <h6 class="mb-1">Features</h6>
@@ -250,10 +231,7 @@
           <div class="guests mb-4">
             <h6 class="mb-1"> Guests</h6>
             <span class="badge rounded-pill bg-light text-dark text-wrap">
-              5 Adults 
-            </span>
-            <span class="badge rounded-pill bg-light text-dark text-wrap">
-              4 Children
+              9 People 
             </span>
           </div>
           <div class="rating mb-4">
@@ -273,7 +251,6 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
 <div class="col-lg-12 text-center mt-5">
       <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms >>></a>
@@ -286,23 +263,23 @@
 <div class="container">
   <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
     <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-      <img src="./images/wifi.svg" width="80px">
+      <img src="{{ url_for('static',filename='/images/facilities/IMG_41622.svg')}}" width="80px">
       <h5 class="mt-3">Wifi</h5>
     </div>
     <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-      <img src="./images/wifi.svg" width="80px">
+      <img src="{{ url_for('static',filename='/images/facilities/IMG_27079.svg')}}" width="80px">
       <h5 class="mt-3">Wifi</h5>
     </div>
     <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-      <img src="./images/wifi.svg" width="80px">
+      <img src="{{ url_for('static',filename='/images/facilities/IMG_43553.svg')}}" width="80px">
       <h5 class="mt-3">Wifi</h5>
     </div>
     <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-      <img src="./images/wifi.svg" width="80px">
+      <img src="{{ url_for('static',filename='/images/facilities/IMG_47816.svg')}}" width="80px">
       <h5 class="mt-3">Wifi</h5>
     </div>
     <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-      <img src="./images/wifi.svg" width="80px">
+      <img src="{{ url_for('static',filename='/images/facilities/IMG_49949.svg')}}" width="80px">
       <h5 class="mt-3">Wifi</h5>
     </div>
     <div class="col-lg-12 text-center mt-5">
@@ -431,12 +408,11 @@
 </div>
 
 <!--Footer-->
-<div id="footer"></div>
+{% include 'common/footer.html' %}
  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
- </script> 
- <script src="./JavaScript/script.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
+ <script src="{{ url_for('static', filename='javascript/script.js') }}"></script>
 </body>
 
 </html>
