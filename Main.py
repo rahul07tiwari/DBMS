@@ -81,6 +81,27 @@ def index():
 
     return render_template('index.html')
 
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.form['email']
+    password = request.form['password']
+
+    # Query the database to find the user with the provided email
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM users WHERE email = %s", (email,))
+    user = cur.fetchone()
+    cur.close()
+
+    if user:
+        # Check if the provided password matches the password in the database
+        if password == user['password']:
+            session['user'] = email  # Start the session
+            return jsonify({'status': 'success'})
+    
+    # If login fails, return an error response
+    return jsonify({'status': 'error', 'message': 'Invalid email or password'})
+
+
 
 @app.route('/home')
 def home():
