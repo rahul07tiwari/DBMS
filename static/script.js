@@ -92,4 +92,3 @@ function getBaseURL(rootfoldername) {
     return window.location.origin;
   }
 }
-
