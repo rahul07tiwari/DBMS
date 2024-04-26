@@ -38,6 +38,7 @@ $(document).ready(function() {
         var email = $('#email').val();
         var password = $('#password').val();
         
+        
         // Send the login request to the server
         $.ajax({
             type: 'POST',
@@ -46,6 +47,7 @@ $(document).ready(function() {
                 email: email,
                 password: password
             },
+
             success: function(response) {
                 if (response.status === 'success') {
                     // Login successful

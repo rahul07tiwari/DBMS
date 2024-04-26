@@ -89,13 +89,13 @@ def login():
     # Query the database to find the user with the provided email
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM users WHERE email = %s", (email,))
-    user = cur.fetchone()
+    users = cur.fetchone()
     cur.close()
 
-    if user:
+    if users:
         # Check if the provided password matches the password in the database
-        if password == user['password']:
-            session['user'] = email  # Start the session
+        if password == users['password']:
+            session['users'] = email  # Start the session
             return jsonify({'status': 'success'})
     
     # If login fails, return an error response
