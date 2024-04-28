@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, redirect, session, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_mysqldb import MySQL
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 import os
+import re
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -14,27 +16,90 @@ app.config['MYSQL_DB'] = 'kaushtubha'  # MySQL database name
 
 mysql = MySQL(app)
 
-# Configure file upload
-app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
+# Function to validate email format
+def validate_email(email):
+    return re.match(r'^[\w\.-]+@[\w\.-]+$', email)
 
-# Create the upload directory if it doesn't exist
-upload_dir = app.config['UPLOAD_FOLDER']
-if not os.path.exists(upload_dir):
-    os.makedirs(upload_dir)
+# Function to validate mobile number format
+def validate_phone_number(phone_number):
+    return re.match(r'^\d{10}$', phone_number)
+
+# Function to validate pincode format
+def validate_pincode(pincode):
+    return re.match(r'^\d{6}$', pincode)
 
 # Function to check if file extension is allowed
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg'}
 
-# Function to validate PIN code
-def validate_pincode(pincode):
-    return len(pincode) == 6 and pincode.isdigit()
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/home')
+def home():
+    return render_template('index.html')
+'''
+@app.route('/availability', methods=['POST'])
+
+def availability():
+    check_in = request.form['check_in']
+    check_out = request.form['check_out']
+    guests = request.form['guests']
+
+    # Redirect to rooms page with query parameters
+    return redirect(url_for('rooms', check_in=check_in, check_out=check_out, guests=guests))
+'''
+@app.route('/Rooms')
+def Rooms():
+    return render_template('HTML/Rooms.html')
+'''
+@app.route('/filter_rooms')
+def filter_rooms():
+    check_in = request.args.get('check_in')
+    check_out = request.args.get('check_out')
+    guests = request.args.get('guests')
+
+    filtered_rooms = [] 
+    return render_template('room_cards.html', filtered_rooms=filtered_rooms)
+'''
+@app.route('/Facilities')
+def Facilities():
+    return render_template('HTML/Facilities.html')
+
+@app.route('/Contact')
+def Contact():
+    return render_template('HTML/Contact.html')
+
+@app.route('/message', methods=['POST'])
+def message():
     if request.method == 'POST':
-        # Get form data from the modal
+        if session.get('loggedin'):
+            Name = request.form['name']
+            Email = request.form['email']
+            Subject = request.form['subject']
+            Message = request.form['message']
+
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO Contact (name, email, subject, message) VALUES (%s, %s, %s, %s)",
+                    (Name, Email, Subject, Message))
+            mysql.connection.commit()
+            cur.close()
+            message = 'Message Sent Successfully'
+            return render_template('HTML/Contact.html', message=message)
+        else:
+            return redirect(url_for('login'))
+    else:
+        return render_template('contact.html')
+    
+@app.route('/About')
+def About():
+    return render_template('HTML/About.html')
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
         name = request.form['Name']
         email = request.form['Email']
         phone_number = request.form['Phone']
@@ -45,30 +110,56 @@ def index():
         confirm_password = request.form['confirm']
         document = request.files['document']
 
-        # Check if email or phone number already exists
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM users WHERE email = %s OR phone_number = %s", (email, phone_number))
-        user = cur.fetchone()
-        cur.close()
+        # Check if email already exists
+        # Simulate the database check
+        def email_already_exists():
+            if email_already_exists(email):
+                flash('Email already registered', 'error')
+                return redirect(url_for('register'))
 
-        if user:
-            return jsonify({'message': 'Email or phone number already exists!', 'status': 'error'})
+        # Check if mobile number already exists
+        # Simulate the database check
+        def phone_number_already_exists():
+            if phone_number_already_exists(phone_number):
+                flash('Mobile number already registered', 'error')
+                return redirect(url_for('register'))
 
         # Validate pincode
         if not validate_pincode(pincode):
-            return jsonify({'message': 'Invalid pincode! Pincode should be a 6-digit number.', 'status': 'error'})
+            flash('Invalid pincode! Pincode should be a 6-digit number.', 'error')
+            return redirect(url_for('register'))
 
-        # Validate password
+        # Validate mobile number
+        if not validate_phone_number(phone_number):
+            flash('Invalid mobile number! Mobile number should be a 10-digit number.', 'error')
+            return redirect(url_for('register'))
+
+        # Validate email format
+        if not validate_email(email):
+            flash('Invalid email format!', 'error')
+            return redirect(url_for('register'))
+
+        # Validate password and confirm password
         if password != confirm_password:
-            return jsonify({'message': 'Password and confirm password do not match!', 'status': 'error'})
+            flash('Password and confirm password do not match!', 'error')
+            return redirect(url_for('register'))
 
-        # Securely save the document
-        if document and allowed_file(document.filename):
-            filename = secure_filename(document.filename)
-            document_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            document.save(document_path)
-        else:
-            return jsonify({'message': 'Invalid document! Please upload a valid JPG, JPEG, or PNG file.', 'status': 'error'})
+        # Validate document file
+        if not allowed_file(document.filename):
+            flash('Invalid document! Please upload a valid JPG, JPEG, or PNG file.', 'error')
+            return redirect(url_for('register'))
+
+        # Save the document file
+        uploads_dir = 'picture/uploads'
+        app.config['UPLOAD_FOLDER'] = uploads_dir
+
+        # Create the uploads directory if it doesn't exist
+        if not os.path.exists(uploads_dir):
+            os.makedirs(uploads_dir)
+
+        document_filename = secure_filename(document.filename)
+        document_path = os.path.join(uploads_dir, document_filename)
+        document.save(document_path)
 
         # Insert user data into database
         cur = mysql.connection.cursor()
@@ -77,51 +168,48 @@ def index():
         mysql.connection.commit()
         cur.close()
 
-        return jsonify({'message': 'Registration successful!', 'status': 'success'})
+        flash('Registration successful!', 'success')
+        return redirect(url_for('index'))
 
-    return render_template('index.html')
+    return render_template('register.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    email = request.form['email']
-    password = request.form['password']
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT id, name, email, password FROM users WHERE email = %s", (email,))
+        user = cur.fetchone()
+        cur.close()
 
-    # Query the database to find the user with the provided email
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM users WHERE email = %s", (email,))
-    users = cur.fetchone()
-    cur.close()
+        if user and user[3] == password:
+            session['loggedin'] = True
+            session['user_id'] = user[0]
+            session['username'] = user[1]
+            return redirect(url_for('profile'))
+        else:
+            return 'Invalid email or password'
 
-    if users:
-        # Check if the provided password matches the password in the database
-        if password == users['password']:
-            session['users'] = email  # Start the session
-            return jsonify({'status': 'success'})
-    
-    # If login fails, return an error response
-    return jsonify({'status': 'error', 'message': 'Invalid email or password'})
+    return render_template('login.html')
 
+# Profile route
+@app.route('/profile')
+def profile():
+    if 'loggedin' in session:
+        return redirect(url_for('index'))
+    else:
+        return redirect(url_for('login'))
 
+# Logout route
+@app.route('/logout', methods=['POST'])
+def logout():
+    session.pop('loggedin', None)
+    session.pop('user_id', None)
+    session.pop('username', None)
+    return redirect(url_for('login'))
 
-@app.route('/home')
-def home():
-    return render_template('index.html')
-
-@app.route('/Rooms')
-def Rooms():
-    return render_template('HTML/Rooms.html')
-
-@app.route('/Facilities')
-def Facilities():
-    return render_template('HTML/Facilities.html')
-
-@app.route('/Contact')
-def Contact():
-    return render_template('HTML/Contact.html')
-
-@app.route('/About')
-def About():
-    return render_template('HTML/About.html')
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

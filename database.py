@@ -38,10 +38,40 @@ def all_in_one():
                 document_path VARCHAR(255) NOT NULL
             )
         ''')
-        mysql.connection.commit()
-        cur.close()
+        # Create 'Settings' table if it doesn't exist
+        cur = mysql.connection.cursor()
+        cur.execute("SHOW TABLES LIKE 'settings'")
+        result = cur.fetchone()
+        if result is None:
+            cur.execute('''
+            CREATE TABLE IF NOT EXISTS Settings (
+            sr_no int AUTO_INCREMENT PRIMARY KEY,
+            site_title varchar(50) NOT NULL,
+            site_about varchar(255) NOT NULL,
+            shutdown boolean NOT NULL
+            )
+        ''')
+            cur.execute("INSERT INTO Settings VALUES (1, 'Hotel Kaushtubha', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quisquam distinctio nulla adipisci tempora error nostrum recusandae, possimus similique perspiciatis qui.', '0')")
+            mysql.connection.commit()
+        
+        cur = mysql.connection.cursor()
+        cur.execute("SHOW TABLES LIKE 'Contact'")
+        result = cur.fetchone()
+        if result is None:
+            cur.execute('''
+            CREATE TABLE IF NOT EXISTS Contact (
+            sr_no int AUTO_INCREMENT PRIMARY KEY,
+            Name varchar(50) NOT NULL,
+            Email varchar(255) NOT NULL,
+            Subject varchar(50) NOT NULL,
+            Message varchar(200) NOT NULL
+            )
+        ''')
+            mysql.connection.commit()
 
     return 'Tables created and values inserted successfully'
 
 if __name__ == "__main__":
     app3.run(port=2000, debug=True)
+
+

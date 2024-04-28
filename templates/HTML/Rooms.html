@@ -21,7 +21,6 @@
 
   <div class="container">
     <div class="row">
-
       <div class="col-lg-3 col-md-12 mb-lg-0 mb-4 px-0">
         <nav class="navbar navbar-expand-lg navbar-light bg-white rounded shadow">
           <div class="container-fluid flex-lg-column align-items-stretch">
@@ -41,26 +40,34 @@
                 <h5 class="mb-3"style="font-size: 18px;">Facilities</h5>
                 <div class="mb-2">
                   <input type="checkbox" id="f1" class="form-check-input shadow-none me-1">
-                  <label class="form-check-label" for="f1">Facility one</label>
+                  <label class="form-check-label" for="f1">Geyser</label>
                 </div>
                 <div class="mb-2">
                   <input type="checkbox" id="f2" class="form-check-input shadow-none me-1">
-                  <label class="form-check-label" for="f2">Facility Two</label>
+                  <label class="form-check-label" for="f2">Air Conditioner</label>
                 </div>
                 <div class="mb-2">
                   <input type="checkbox" id="f3" class="form-check-input shadow-none me-1">
-                  <label class="form-check-label" for="f3">Facility Three</label>
+                  <label class="form-check-label" for="f3">Room Heater</label>
+                </div>
+                <div class="mb-2">
+                  <input type="checkbox" id="f3" class="form-check-input shadow-none me-1">
+                  <label class="form-check-label" for="f3">Wifi</label>
+                </div>
+                <div class="mb-2">
+                  <input type="checkbox" id="f3" class="form-check-input shadow-none me-1">
+                  <label class="form-check-label" for="f3">Spa</label>
+                </div>
+                <div class="mb-2">
+                  <input type="checkbox" id="f3" class="form-check-input shadow-none me-1">
+                  <label class="form-check-label" for="f3">Telivision</label>
                 </div>
               </div>
               <div class="border bg-light p-3 rounded mb-3">
                 <h5 class="mb-3"style="font-size: 18px;">Guests</h5>
                 <div class="d-flex">
                   <div class="me-3">
-                    <label class="form-label">Adults</label>
-                    <input type="number" class="form-control shadow-none">
-                  </div>
-                  <div>
-                    <label class="form-label">Children</label>
+                    <label class="form-label">Person</label>
                     <input type="number" class="form-control shadow-none">
                   </div>
               </div>
@@ -76,20 +83,17 @@
                 <img src="{{ url_for('static',filename='/images/rooms/1.jpg')}}" class="img-fluid rounded">
               </div>
               <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                <h5 class="mb-2">Simple Room Name</h5>
+                <h5 class="mb-2">Simple Room</h5>
                 <div class="features mb-3">
                   <h6 class="mb-1">Features</h6>
                   <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    2 Rooms
+                    bedroom
                   </span>
                   <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    1 Bathroom
+                    Bathroom
                   </span>
                   <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    1 Balcony
-                  </span>
-                  <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    1 hall
+                    Balcony
                   </span>
                 </div>
                 <div class="facilities mb-3">
@@ -101,16 +105,13 @@
                     AC
                   </span>
                   <span class="badge rounded-pill bg-light text-dark text-wrap ">
-                    Room Heater
+                    Geyser
                   </span>
                 </div>
                 <div class="guests">
                   <h6 class="mb-1"> Guests</h6>
                   <span class="badge rounded-pill bg-light text-dark text-wrap">
-                    5 Adults 
-                  </span>
-                  <span class="badge rounded-pill bg-light text-dark text-wrap">
-                    4 Children
+                    3 People
                   </span>
                 </div>
               </div>
@@ -127,20 +128,20 @@
                 <img src="{{ url_for('static',filename='/images/rooms/IMG_11892.png')}}" class="img-fluid rounded">
               </div>
               <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                <h5 class="mb-2">Simple Room Name</h5>
+                <h5 class="mb-2">Deluxe Room</h5>
                 <div class="features mb-3">
                   <h6 class="mb-1">Features</h6>
                   <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    2 Rooms
+                    Bedrooms
                   </span>
                   <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    1 Bathroom
+                    Bathroom
                   </span>
                   <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    1 Balcony
+                    Balcony
                   </span>
                   <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    1 hall
+                    hall
                   </span>
                 </div>
                 <div class="facilities mb-3">
@@ -154,19 +155,19 @@
                   <span class="badge rounded-pill bg-light text-dark text-wrap ">
                     Room Heater
                   </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                    Geyser
+                  </span>
                 </div>
                 <div class="guests">
                   <h6 class="mb-1"> Guests</h6>
                   <span class="badge rounded-pill bg-light text-dark text-wrap">
-                    5 Adults 
-                  </span>
-                  <span class="badge rounded-pill bg-light text-dark text-wrap">
-                    4 Children
+                    5 People 
                   </span>
                 </div>
               </div>
               <div class="col-md-2 mt-lg-0 mt-md-0 mt-4 text-center">
-                <h6 class="mb-4"> ₹600 per night</h6>
+                <h6 class="mb-4"> ₹1200 per night</h6>
                 <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book</a>
                 <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">More Details</a>
               </div>
@@ -178,20 +179,20 @@
                 <img src="{{ url_for('static',filename='/images/rooms/IMG_39782.png')}}" class="img-fluid rounded">
               </div>
               <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                <h5 class="mb-2">Simple Room Name</h5>
+                <h5 class="mb-2">Super Deluxe Room</h5>
                 <div class="features mb-3">
                   <h6 class="mb-1">Features</h6>
                   <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    2 Rooms
+                    Bedroom
                   </span>
                   <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    1 Bathroom
+                    Bathroom
                   </span>
                   <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    1 Balcony
+                    Balcony
                   </span>
                   <span class="badge rounded-pill bg-light text-dark  text-wrap">
-                    1 hall
+                    hall
                   </span>
                 </div>
                 <div class="facilities mb-3">
@@ -205,19 +206,79 @@
                   <span class="badge rounded-pill bg-light text-dark text-wrap ">
                     Room Heater
                   </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                    Telivision
+                  </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                    Air Conditioner
+                  </span>
                 </div>
                 <div class="guests">
                   <h6 class="mb-1"> Guests</h6>
                   <span class="badge rounded-pill bg-light text-dark text-wrap">
-                    5 Adults 
-                  </span>
-                  <span class="badge rounded-pill bg-light text-dark text-wrap">
-                    4 Children
+                    6 Adults 
                   </span>
                 </div>
               </div>
               <div class="col-md-2 mt-lg-0 mt-md-0 mt-4 text-center">
-                <h6 class="mb-4"> ₹600 per night</h6>
+                <h6 class="mb-4"> ₹1800 per night</h6>
+                <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book</a>
+                <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">More Details</a>
+              </div>
+          </div>
+        </div>
+        <div class="card mb-4 border-0 shadow">
+          <div class="row g-0 p-3 align-items-center">
+              <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
+                <img src="{{ url_for('static',filename='/images/rooms/IMG_78809.png')}}" class="img-fluid rounded">
+              </div>
+              <div class="col-md-5 px-lg-3 px-md-3 px-0">
+                <h5 class="mb-2">Super Duper Deluxe Room</h5>
+                <div class="features mb-3">
+                  <h6 class="mb-1">Features</h6>
+                  <span class="badge rounded-pill bg-light text-dark  text-wrap">
+                    Rooms
+                  </span>
+                  <span class="badge rounded-pill bg-light text-dark  text-wrap">
+                    Bathroom
+                  </span>
+                  <span class="badge rounded-pill bg-light text-dark  text-wrap">
+                    Balcony
+                  </span>
+                  <span class="badge rounded-pill bg-light text-dark  text-wrap">
+                    hall
+                  </span>
+                </div>
+                <div class="facilities mb-3">
+                  <h6 class="mb-1"> Facilities</h6>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap">
+                    Wifi 
+                  </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap">
+                    AC
+                  </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                    Room Heater
+                  </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                    Telivision
+                  </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                    Air Conditioner
+                  </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                    Spa
+                  </span>
+                </div>
+                <div class="guests">
+                  <h6 class="mb-1"> Guests</h6>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap">
+                    8 person
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-2 mt-lg-0 mt-md-0 mt-4 text-center">
+                <h6 class="mb-4"> ₹2400 per night</h6>
                 <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book</a>
                 <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">More Details</a>
               </div>

@@ -1,3 +1,24 @@
+// JavaScript code to filter rooms based on check-in, check-out, and guests
+var check_in = '{{ request.args.get("check_in") }}';
+var check_out = '{{ request.args.get("check_out") }}';
+var guests = '{{ request.args.get("guests") }}';
+
+// Send AJAX request to Flask route with check-in, check-out, and guests data
+$.ajax({
+    type: 'GET',
+    url: '/filter_rooms',
+    data: {
+        check_in: check_in,
+        check_out: check_out,
+        guests: guests
+    },
+    success: function(data) {
+        // Populate room cards based on filtered data
+        $('#room-cards').html(data);
+    }
+});
+
+
 //----------------------------------------crousel........swiper-------------------------------------------------//
   var swiper = new Swiper(".swiper-container", {
     spaceBetween: 30,
