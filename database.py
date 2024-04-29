@@ -67,8 +67,6 @@ def all_in_one():
             Message varchar(200) NOT NULL
             )
         ''')
-            mysql.connection.commit()
-
     return 'Tables created and values inserted successfully'
 
 if __name__ == "__main__":
