@@ -67,6 +67,52 @@ def all_in_one():
             Message varchar(200) NOT NULL
             )
         ''')
+        cur = mysql.connection.cursor()
+        cur.execute("SHOW TABLES LIKE 'reservation'")
+        result = cur.fetchone()
+        if result is None:
+            cur.execute('''
+            CREATE TABLE IF NOT EXISTS reservation (
+            res_id int primary key auto_increment NOT NULL,
+            user_id int NOT NULL,
+            foreign key(user_id) references users(user_id),
+            room_id int NOT NULL,
+            foreign key(room_id) references our_rooms(room_id),
+            name varchar(50) NOT NULL,
+            email_id varchar(255) NOT NULL,
+            address varchar(255) NOT NULL,
+            pincode varchar(6) NOT NULL,
+            No_of_guests int NOT NULL,
+            check_in date NOT NULL,
+            check_out date NOT NULL,
+            res_date date NOT NULL
+            )
+        ''')
+        cur = mysql.connection.cursor()
+        cur.execute("SHOW TABLES LIKE 'our_rooms'")
+        result = cur.fetchone()
+        if result is None:
+            cur.execute('''
+            CREATE TABLE IF NOT EXISTS our_rooms (
+            check_in date NOT NULL,
+            check_out date NOT NULL,
+            guests int NOT NULL,
+            room_id int Primary Key NOT NULL
+            )
+        ''')
+        cur = mysql.connection.cursor()
+        cur.execute("SHOW TABLES LIKE 'rooms'")
+        result = cur.fetchone()
+        if result is None:
+            cur.execute('''
+            CREATE TABLE IF NOT EXISTS rooms (
+            room_id int NOT NULL,
+            foreign key(room_id) references our_rooms(room_id),
+            room_name varchar(50) NOT NULL,
+            price int NOT NULL
+            )
+        ''')
+        
     return 'Tables created and values inserted successfully'
 
 if __name__ == "__main__":
