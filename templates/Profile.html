@@ -1,63 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">  
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel kaushtubha -register</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <style>
-      body {
-        /* Set background image */
-        background-image: url('/static/images/carousel/hotel.jpg');
-        /* Specify background size */
-        background-size: cover; /* Adjust as needed */
-        /* Center the background image */
-        background-position: center center;
-        /* Fixed background to prevent scrolling */
-        background-attachment: fixed;
-      }
-    </style>
 </head>
-<body class="bg-light">
+<body>
 
   <div class=" bg-dark register-form rounded  shadow overflow">
-    
-    <form id="registerform" action="/register" method="post" enctype="multipart/form-data">
+    <form id="my_profile" action="/my_profile" >
         <div>
           <h5 class="bg-dark text-white py-3 p-2">
-            <i class="bi bi-person-lines-fill fs-3 me-2"></i> Register</h5>
+            <i class="bi bi-person-lines-fill fs-3 me-2"></i> Profile</h5>
         </div>
-        <div>
-          <span class="badge rounded-pill bg-light text-center text-dark mb-3 text-wrap lh-base">
-            Note: your details should match your id(aadhar card, passport, driving liscence, etc.) that will be required during checkin.
-          </span>   
+        <div>  
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-6 px-2 p-6 text-white mb-1">
+              <div class="col-md-4 px-2 p-6 text-white mb-1">
                 <label class="form-label">Name</label>
                 <input type="text" class="form-control shadow-none" name="Name" required>
               </div>
-              <div class="col-md-6 px-2 p-6 text-white mb-1">
+              <div class="col-md-4 px-2 p-6 text-white mb-1">
                 <label class="form-label">Email address</label>
                 <input type="email" class="form-control shadow-none" name="Email"  required>
               </div>
-              <div class="col-md-6 px-2 p-6 text-white mb-1">
+              <div class="col-md-4 px-2 p-6 text-white mb-1">
                 <label class="form-label">Phone Number</label>
                 <input type="number" class="form-control shadow-none" name="Phone"  required>
               </div>
-              <div class="col-md-6 px-2 p-6 text-white mb-1">
+              <div class="col-md-4 px-2 p-6 text-white mb-1">
                 <label class="form-label">Document</label>
                 <input type="file" accept=".jpg, .jpeg, .png" class="form-control shadow-none" name="document"  required>
               </div>
-              <div class="col-md-12 px-2 p-6 text-white mb-1">
+              <div class="col-md-18 px-2 p-6 text-white mb-1">
                 <label class="form-label">Address</label>
                 <textarea class="form-control shadow-none" name="Address" rows="1"  required></textarea>
               </div>
-              <div class="col-md-6 px-2 p-6 text-white mb-1">
+              <div class="col-md-4 px-2 p-6 text-white mb-1">
                 <label class="form-label">Pincode</label>
                 <input type="number" class="form-control shadow-none" name="Pincode"  required>
               </div>
@@ -65,32 +49,28 @@
                 <label class="form-label">Date of birth</label>
                 <input type="date" class="form-control shadow-none" name="DOB"  required>
               </div>
-              <div class="col-md-6 px-2 p-6 text-white mb-4">
+              <div class="col-md-4 px-2 p-6 text-white mb-4">
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control shadow-none" name="password"  required>
               </div>
-              <div class="col-md-6 px-2 p-6 text-white mb-4">
+              <div class="col-md-4 px-2 p-6 text-white mb-4">
                 <label class="form-label">Confirm Password</label>
                 <input type="password" class="form-control shadow-none" name="confirm"  required>
               </div>
               <div class="d-flex align-items-center justify-content-between mb-2">
-                <button types="submit" id="login_button" class="btn btn shadow-none custom-bg">Register</button>
-                <a href="{{url_for('home')}}" class="text-secondary text-decoration-none">Home</a>
+                <button types="submit" id="edit button" class="btn btn shadow-none custom-bg">Edit</button>
               </div>
             </div>
           </div>
         </div> 
     </form>
   </div>
-    
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script src="{{ url_for('static', filename='login.js') }}"></script>
-   </body>
-   
-   </html>
+</body>
+</html>

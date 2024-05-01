@@ -26,10 +26,19 @@
           </li>
         </ul>
         {% if session.loggedin %}
-            <h4 class=" d-flex h-font px-3">Hello, {{ session.username }}!</h4>
-            <form action="{{ url_for('logout')}}" method="post">
-                <button class="btn btn-outline-dark shadow-none me-lg-2 me-3" type="submit">Logout</button>
-            </form>
+        <h4 class=" d-flex h-font">Hello, {{ session.username }}!</h4>
+            <li class="nav-item dropdown d-flex  me-auto mb-2 mb-lg-0">
+              <a class="nav-link dropdown-toggle text-dark"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{url_for('my_profile')}}">My profile</a></li>
+                <li><a class="dropdown-item" href="{{url_for('my_bookings')}}">My Bookings</a></li>
+                <form action="/logout" method="POST">
+                 <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+              </ul>
+            </li>
         {% else %}
         <form class="d-flex">
           <button id="loginButton" type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" onclick= "redirectToLogin()" >Login</button>

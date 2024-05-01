@@ -1,3 +1,4 @@
+/*
 // JavaScript code to filter rooms based on check-in, check-out, and guests
 var check_in = '{{ request.args.get("check_in") }}';
 var check_out = '{{ request.args.get("check_out") }}';
@@ -18,7 +19,7 @@ $.ajax({
     }
 });
 
-
+*/
 //----------------------------------------crousel........swiper-------------------------------------------------//
   var swiper = new Swiper(".swiper-container", {
     spaceBetween: 30,

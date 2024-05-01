@@ -27,7 +27,7 @@ def all_in_one():
         # Create 'users' table if it doesn't exist
         cur.execute('''
             CREATE TABLE IF NOT EXISTS users (
-                id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(255) NOT NULL,
                 email VARCHAR(255) UNIQUE NOT NULL,
                 phone_number VARCHAR(20) UNIQUE NOT NULL,

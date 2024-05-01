@@ -53,6 +53,46 @@ def availability():
 @app.route('/Rooms')
 def Rooms():
     return render_template('HTML/Rooms.html')
+
+@app.route('/booking', methods=['GET','POST'])
+def booking():
+     if request.method == 'POST':
+        if session.get('loggedin'):
+            Name = request.form['name']
+            Email = request.form['email_id']
+            Phone_number = request.form['phone_no']
+            Room_id = request.form['room_id']
+            Address = request.form['address']
+            Pincode = request.form['pincode']
+            No_of_Guests= request.form['No_of_guests']
+            check_in = request.form['check_in']
+            check_out = request.form['check_out']
+            Date = request.form['res_date']
+            cursor = mysql.connection.cursor()
+            cursor.execute("SELECT COUNT(*) AS count FROM users WHERE name = %s AND email = %s AND phone_number = %s AND address = %s AND pincode = %s",
+               (Name, Email, Phone_number, Address, Pincode))
+
+    
+             # Fetch the result
+            result = cursor.fetchone()
+            count = result[0]
+
+            # Check if a record with the same details exists
+            if count > 0:
+                cursor.execute("INSERT INTO reservation (name, email_id,  phone_no, room_id, address, pincode, No_of_guests, check_in, check_out, res_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                    (Name, Email, Phone_number, Room_id, Address, Pincode, No_of_Guests, check_in, check_out, Date, ))
+                #cursor.execute("INSERT INTO reservation (user_id) SELECT user_id FROM users WHERE email = %s", (Email,))
+
+                mysql.connection.commit()
+                cursor.close()
+                message = 'Booking Successfull'
+                return render_template('Index.html')
+            else:
+                flash("No record with the same details exists. Do not proceed with booking.")
+                redirect(url_for('booking'))
+     else:
+         return render_template('Booking.html')
+    
 '''
 @app.route('/filter_rooms')
 def filter_rooms():
@@ -180,7 +220,7 @@ def login():
         password = request.form['password']
         
         cur = mysql.connection.cursor()
-        cur.execute("SELECT id, name, email, password FROM users WHERE email = %s", (email,))
+        cur.execute("SELECT user_id, name, email, password FROM users WHERE email = %s", (email,))
         user = cur.fetchone()
         cur.close()
 
@@ -201,7 +241,19 @@ def profile():
         return redirect(url_for('index'))
     else:
         return redirect(url_for('login'))
+    
+@app.route('/my_profile')
+def my_profile():
+    return render_template('profile.html')
+    
+@app.route('/mybookings')
+def my_bookings():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT reservation.room_id, check_in, check_out, res_date, Room_name, Price FROM reservation JOIN rooms ON reservation.room_id = rooms.room_id")
+    bookings = cursor.fetchall()
+    cursor.close()
 
+    return render_template('mybookings.html', bookings=bookings)
 # Logout route
 @app.route('/logout', methods=['POST'])
 def logout():

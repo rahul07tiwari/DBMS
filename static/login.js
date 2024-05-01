@@ -7,4 +7,7 @@ function redirectToLogin() {
 function redirectToRegister() {
     window.location.href = "/register"; // Redirect to the register page
 }
+function redirectTobooking() {
+    window.location.href = "/booking"; // Redirect to the register page
+}
 
