@@ -242,6 +242,7 @@ def profile():
     else:
         return redirect(url_for('login'))
     
+    
 @app.route('/my_profile')
 def my_profile():
     return render_template('profile.html')
